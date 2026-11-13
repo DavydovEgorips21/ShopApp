@@ -1,0 +1,33 @@
+@model IEnumerable<ShopApp.Models.Order>
+
+@{
+    ViewData["Title"] = "Заказы";
+}
+
+<h1>Список заказов</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Добавить заказ</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>ID Клиента</th>
+            <th>Дата</th>
+            <th>Статус</th>
+            <th>Сумма</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.ClientId</td>
+            <td>@item.CreatedAt.ToString("g")</td>
+            <td>@item.Status</td>
+            <td>@item.Total</td>
+        </tr>
+}
+    </tbody>
+</table>

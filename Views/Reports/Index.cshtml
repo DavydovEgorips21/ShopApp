@@ -1,0 +1,35 @@
+@model IEnumerable<ShopApp.Models.Order>
+
+@{
+    ViewData["Title"] = "Отчет по продажам";
+}
+
+<h1>Модуль отчетности</h1>
+
+<div class="alert alert-info">
+    <h3>Всего заказов: @ViewBag.OrdersCount</h3>
+    <h3>Общая сумма: @ViewBag.TotalSum руб.</h3>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID Заказа</th>
+            <th>Клиент</th>
+            <th>Дата</th>
+            <th>Сумма</th>
+            <th>Статус</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Client?.FullName</td>
+                <td>@item.CreatedAt.ToShortDateString()</td>
+                <td>@item.Total</td>
+                <td>@item.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
